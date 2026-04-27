@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TaskFlow - Organizador de Tarefas</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="card">
+        <h2>TaskFlow 📝</h2>
+        <div class="input-group">
+            <input type="text" id="taskInput" placeholder="O que precisa ser feito?">
+            <button class="btn-add" onclick="addTask()">Add</button>
+        </div>
+
+        <div class="section">
+            <h3>⏳ Pendentes</h3>
+            <ul id="taskList"></ul>
+        </div>
+
+        <div class="section">
+            <h3>✅ Concluídas</h3>
+            <ul id="completedList"></ul>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
