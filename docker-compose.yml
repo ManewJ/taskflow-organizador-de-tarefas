@@ -1,0 +1,39 @@
+services:
+  # O Banco de dados
+  db:
+    image: mongo:latest
+    container_name: taskflow_db
+    ports:
+      - "27017:27017"
+
+  # O seu Backend (Pedro)
+  backend:
+    build: ./backend
+    container_name: taskflow_back
+    ports:
+      - "5000:5000"
+    depends_on:
+      - db
+
+  # O seu Frontend (Rodrigo)
+  frontend:
+    build: ./frontend
+    container_name: taskflow_front
+    ports:
+      - "3000:80"
+    depends_on:
+      - backend
+    volumes:
+      - ./frontend:/usr/share/nginx/html:ro  # Adicione esse :ro (read-only)
+
+      # Painel visual para o Banco de Dados
+  mongo-express:
+    image: mongo-express
+    container_name: taskflow_manager
+    restart: always
+    ports:
+      - "8081:8081"
+    environment:
+      ME_CONFIG_MONGODB_SERVER: db
+      ME_CONFIG_MONGODB_PORT: 27017
+      ME_CONFIG_MONGODB_ENABLE_ADMIN: "true"
